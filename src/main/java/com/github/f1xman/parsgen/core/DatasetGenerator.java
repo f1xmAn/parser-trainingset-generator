@@ -30,7 +30,7 @@ public class DatasetGenerator {
         do {
             loadedPages = loader.loadAll(page++, pageSize);
             analyzeAndPrint(loadedPages);
-        } while (loadedPages.size() > 0);
+        } while (!loadedPages.isEmpty());
     }
 
     private void analyzeAndPrint(List<LoadedPage> loadedPages) {

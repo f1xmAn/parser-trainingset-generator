@@ -3,9 +3,9 @@ package com.github.f1xman.parsgen.core;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
 import com.github.f1xman.parsgen.core.analyze.LoadedPageAnalyzer;
 import com.github.f1xman.parsgen.core.analyze.PageFeatures;
+import com.github.f1xman.parsgen.core.common.LoadedPage;
 import com.github.f1xman.parsgen.core.load.SourceCollectionLoader;
 import com.github.f1xman.parsgen.core.print.PageFeaturesPrinter;
-import com.github.f1xman.parsgen.core.common.LoadedPage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -17,7 +17,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
 
 @ExtendWith(MockitoExtension.class)
-public class DatasetGeneratorTest {
+class DatasetGeneratorTest {
 
     static final int SIZE = 20;
     static final String FOO_BAR = "foo.bar";
