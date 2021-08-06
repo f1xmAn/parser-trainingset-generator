@@ -16,6 +16,8 @@
     <properties>
         <java.version>11</java.version>
         <testcontainers.version>1.15.3</testcontainers.version>
+        <sonar.organization>f1xman</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
     <dependencies>
         <dependency>
