@@ -1,4 +1,4 @@
-package com.github.f1xman.parsgen.core.load;
+package com.github.f1xman.parsgen.core.load.model;
 
 import lombok.Value;
 

@@ -1,4 +1,4 @@
-package com.github.f1xman.parsgen.core.common;
+package com.github.f1xman.parsgen.core.load.model;
 
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategy;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
@@ -34,7 +34,7 @@ class LoadedPageImplTest {
 
     @Test
     void analyzesContentUsingProvidedStrategy() throws AnalysisStrategyNotFoundException {
-        LoadedPageImpl page = LoadedPageImpl.of(PAGE_URL, CONTENT);
+        LoadedPageImpl page = LoadedPageImpl.from(HtmlPage.of(PAGE_URL, CONTENT));
         PageFeatures expectedPageFeatures = PageFeatures.builder().build();
         given(analyzer.findStrategy(PAGE_URL)).willReturn(strategy);
         given(strategy.analyze(page)).willReturn(expectedPageFeatures);
@@ -47,7 +47,7 @@ class LoadedPageImplTest {
     @Test
     @SneakyThrows
     void doesNotSuppressAnalysisStrategyNotFoundException() {
-        LoadedPageImpl page = LoadedPageImpl.of(PAGE_URL, CONTENT);
+        LoadedPageImpl page = LoadedPageImpl.from(HtmlPage.of(PAGE_URL, CONTENT));
         given(analyzer.findStrategy(PAGE_URL)).willThrow(new AnalysisStrategyNotFoundException("foo.bar"));
 
         thenThrownBy(() -> page.analyze(analyzer))

@@ -1,4 +1,4 @@
-package com.github.f1xman.parsgen.core.common;
+package com.github.f1xman.parsgen.core.load.model;
 
 import com.github.f1xman.parsgen.core.analyze.PageFeatures;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;

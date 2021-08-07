@@ -1,14 +1,18 @@
-package com.github.f1xman.parsgen.core.common;
+package com.github.f1xman.parsgen.core.load.model;
 
-import com.github.f1xman.parsgen.core.analyze.PageFeatures;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategy;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
 import com.github.f1xman.parsgen.core.analyze.LoadedPageAnalyzer;
+import com.github.f1xman.parsgen.core.analyze.PageFeatures;
+import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 import java.net.URL;
 
-@Value(staticConstructor = "of")
+import static lombok.AccessLevel.PRIVATE;
+
+@Value
+@RequiredArgsConstructor(access = PRIVATE)
 public class LoadedPageImpl implements LoadedPage {
 
     URL url;
@@ -20,4 +24,7 @@ public class LoadedPageImpl implements LoadedPage {
         return strategy.analyze(this);
     }
 
+    public static LoadedPageImpl from(HtmlPage htmlPage) {
+        return new LoadedPageImpl(htmlPage.getUrl(), htmlPage.getContent());
+    }
 }
