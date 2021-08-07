@@ -4,7 +4,7 @@ import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
 import com.github.f1xman.parsgen.core.analyze.LoadedPageAnalyzer;
 import com.github.f1xman.parsgen.core.analyze.PageFeatures;
 import com.github.f1xman.parsgen.core.common.LoadedPage;
-import com.github.f1xman.parsgen.core.load.SourceCollectionLoader;
+import com.github.f1xman.parsgen.core.load.PageLoader;
 import com.github.f1xman.parsgen.core.print.PageFeaturesPrinter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +25,7 @@ class DatasetGeneratorTest {
     static final int PAGE_2 = 2;
 
     @Mock
-    SourceCollectionLoader loader;
+    PageLoader loader;
     @Mock
     LoadedPageAnalyzer analyzer;
     @Mock

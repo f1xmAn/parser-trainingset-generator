@@ -4,7 +4,7 @@ import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
 import com.github.f1xman.parsgen.core.analyze.LoadedPageAnalyzer;
 import com.github.f1xman.parsgen.core.analyze.PageFeatures;
 import com.github.f1xman.parsgen.core.common.LoadedPage;
-import com.github.f1xman.parsgen.core.load.SourceCollectionLoader;
+import com.github.f1xman.parsgen.core.load.PageLoader;
 import com.github.f1xman.parsgen.core.print.PageFeaturesPrinter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -17,7 +17,7 @@ import java.util.Optional;
 @Slf4j
 public class DatasetGenerator {
 
-    private final SourceCollectionLoader loader;
+    private final PageLoader loader;
     private final LoadedPageAnalyzer analyzer;
     private final PageFeaturesPrinter printer;
     @Setter
