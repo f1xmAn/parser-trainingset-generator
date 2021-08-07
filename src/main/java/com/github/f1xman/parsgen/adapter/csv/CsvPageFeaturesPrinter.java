@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.io.FileWriter;
 import java.net.URI;
@@ -15,8 +17,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
+@Component
 public class CsvPageFeaturesPrinter implements PageFeaturesPrinter {
 
+    @Value("${print.csv.output-directory}")
     private final Path outputDirectory;
 
     @Override

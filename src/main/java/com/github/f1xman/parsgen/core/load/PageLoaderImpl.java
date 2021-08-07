@@ -5,6 +5,7 @@ import com.github.f1xman.parsgen.core.load.model.LoadedPageImpl;
 import com.github.f1xman.parsgen.core.load.model.SourceCollection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.List;
@@ -15,6 +16,7 @@ import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class PageLoaderImpl implements PageLoader {
 
     private final SourceCollectionRepository sourceCollectionRepository;

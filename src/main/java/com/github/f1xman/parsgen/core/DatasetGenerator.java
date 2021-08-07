@@ -9,6 +9,7 @@ import com.github.f1xman.parsgen.core.print.PageFeaturesPrinter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
 @Slf4j
+@Component
 public class DatasetGenerator {
 
     private final PageLoader loader;

@@ -6,12 +6,14 @@ import com.github.f1xman.parsgen.core.load.model.SourceCollection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
+@Component
 public class MongoSourceCollectionRepository implements SourceCollectionRepository {
 
     private final SourceCollectionDocumentRepository repository;

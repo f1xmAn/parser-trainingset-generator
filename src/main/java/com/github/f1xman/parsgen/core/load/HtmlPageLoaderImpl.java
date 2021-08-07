@@ -3,6 +3,7 @@ package com.github.f1xman.parsgen.core.load;
 import com.github.f1xman.parsgen.core.load.model.HtmlPage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.net.URI;
 import java.net.URL;
@@ -12,6 +13,7 @@ import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
 @Slf4j
+@Component
 public class HtmlPageLoaderImpl implements HtmlPageLoader {
     @Override
     public CompletableFuture<HtmlPage> load(URL url) {
