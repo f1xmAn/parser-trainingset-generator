@@ -2,6 +2,9 @@ package com.github.f1xman.parsgen.core.print;
 
 import com.github.f1xman.parsgen.core.analyze.model.PageFeatures;
 
+import java.net.URI;
+import java.util.List;
+
 public interface PageFeaturesPrinter {
-    void print(PageFeatures pageFeatures);
+    URI print(List<PageFeatures> pageFeatures);
 }

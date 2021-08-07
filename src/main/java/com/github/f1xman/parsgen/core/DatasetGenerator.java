@@ -3,8 +3,8 @@ package com.github.f1xman.parsgen.core;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
 import com.github.f1xman.parsgen.core.analyze.LoadedPageAnalyzer;
 import com.github.f1xman.parsgen.core.analyze.model.PageFeatures;
-import com.github.f1xman.parsgen.core.load.model.LoadedPage;
 import com.github.f1xman.parsgen.core.load.PageLoader;
+import com.github.f1xman.parsgen.core.load.model.LoadedPage;
 import com.github.f1xman.parsgen.core.print.PageFeaturesPrinter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -34,11 +36,12 @@ public class DatasetGenerator {
     }
 
     private void analyzeAndPrint(List<LoadedPage> loadedPages) {
-        loadedPages.stream()
+        List<PageFeatures> featuresList = loadedPages.stream()
                 .map(this::analyze)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .forEach(printer::print);
+                .collect(toList());
+        printer.print(featuresList);
     }
 
     private Optional<PageFeatures> analyze(LoadedPage p) {

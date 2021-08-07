@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.net.URL;
+import java.util.List;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.assertj.core.api.BDDAssertions.thenThrownBy;
@@ -35,7 +36,7 @@ class LoadedPageImplTest {
     @Test
     void analyzesContentUsingProvidedStrategy() throws AnalysisStrategyNotFoundException {
         LoadedPageImpl page = LoadedPageImpl.from(HtmlPage.of(PAGE_URL, CONTENT));
-        PageFeatures expectedPageFeatures = PageFeatures.builder().build();
+        PageFeatures expectedPageFeatures = PageFeatures.of(List.of());
         given(analyzer.findStrategy(PAGE_URL)).willReturn(strategy);
         given(strategy.analyze(page)).willReturn(expectedPageFeatures);
 

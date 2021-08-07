@@ -3,8 +3,8 @@ package com.github.f1xman.parsgen.core;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
 import com.github.f1xman.parsgen.core.analyze.LoadedPageAnalyzer;
 import com.github.f1xman.parsgen.core.analyze.model.PageFeatures;
-import com.github.f1xman.parsgen.core.load.model.LoadedPage;
 import com.github.f1xman.parsgen.core.load.PageLoader;
+import com.github.f1xman.parsgen.core.load.model.LoadedPage;
 import com.github.f1xman.parsgen.core.print.PageFeaturesPrinter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,11 +41,11 @@ class DatasetGeneratorTest {
         given(loader.loadAll(PAGE_1, SIZE)).willReturn(List.of(loadedPageWithoutStrategy));
         given(loadedPageWithoutStrategy.analyze(analyzer)).willThrow(new AnalysisStrategyNotFoundException(FOO_BAR));
         given(loader.loadAll(PAGE_2, SIZE)).willReturn(List.of(loadedPage));
-        PageFeatures pageFeatures = PageFeatures.builder().build();
+        PageFeatures pageFeatures = PageFeatures.of(List.of());
         given(loadedPage.analyze(analyzer)).willReturn(pageFeatures);
 
         datasetGenerator.generate();
 
-        then(printer).should().print(pageFeatures);
+        then(printer).should().print(List.of(pageFeatures));
     }
 }
