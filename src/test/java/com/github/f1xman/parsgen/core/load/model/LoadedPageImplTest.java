@@ -3,7 +3,7 @@ package com.github.f1xman.parsgen.core.load.model;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategy;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategyNotFoundException;
 import com.github.f1xman.parsgen.core.analyze.LoadedPageAnalyzer;
-import com.github.f1xman.parsgen.core.analyze.PageFeatures;
+import com.github.f1xman.parsgen.core.analyze.model.PageFeatures;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
