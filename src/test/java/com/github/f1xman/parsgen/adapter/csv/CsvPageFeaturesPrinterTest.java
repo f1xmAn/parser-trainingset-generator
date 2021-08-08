@@ -22,15 +22,20 @@ public class CsvPageFeaturesPrinterTest {
 
     static final String FEATURE = "feature";
     static final String VALUE = "value";
+    static final String RUN_ID = "runId";
     private Path tempDirectory;
-    private String expectedCsv;
+    private String expectedCreatedCsv;
+    private String expectedAppendedCsv;
 
     @BeforeEach
     @SneakyThrows
     void setUp() {
         tempDirectory = Files.createTempDirectory("parsgen-output");
-        URL resource = getClass().getClassLoader().getResource("csv/feature-value.csv");
-        expectedCsv = Files.readString(Paths.get(resource.toURI()));
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL expectedCreatedUrl = classLoader.getResource("csv/feature-value.csv");
+        expectedCreatedCsv = Files.readString(Paths.get(expectedCreatedUrl.toURI()));
+        URL expectedAppendedUrl = classLoader.getResource("csv/feature-value-value.csv");
+        expectedAppendedCsv = Files.readString(Paths.get(expectedAppendedUrl.toURI()));
     }
 
     @AfterEach
@@ -56,8 +61,22 @@ public class CsvPageFeaturesPrinterTest {
         Feature singleFeature = Feature.of(FEATURE, VALUE);
         PageFeatures pageFeatures = PageFeatures.of(List.of(singleFeature));
 
-        URI outputCsvUri = printer.print(List.of(pageFeatures));
+        URI outputCsvUri = printer.print(List.of(pageFeatures), RUN_ID);
 
-        then(Files.readString(Path.of(outputCsvUri))).isEqualTo(expectedCsv);
+        then(Files.readString(Path.of(outputCsvUri))).isEqualTo(expectedCreatedCsv);
+    }
+
+    @Test
+    @SneakyThrows
+    void appendsPageFeaturesToExistingCsvFile() {
+        Path outputFile = tempDirectory.resolve("features-runId.csv");
+        Files.writeString(outputFile, expectedCreatedCsv);
+        CsvPageFeaturesPrinter printer = new CsvPageFeaturesPrinter(tempDirectory);
+        Feature singleFeature = Feature.of(FEATURE, VALUE);
+        PageFeatures pageFeatures = PageFeatures.of(List.of(singleFeature));
+
+        URI outputCsvUri = printer.print(List.of(pageFeatures), RUN_ID);
+
+        then(Files.readString(Paths.get(outputCsvUri))).isEqualTo(expectedAppendedCsv);
     }
 }

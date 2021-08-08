@@ -11,6 +11,8 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.time.Clock;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,11 +26,14 @@ public class DatasetGenerator {
     private final PageLoader loader;
     private final LoadedPageAnalyzer analyzer;
     private final PageFeaturesPrinter printer;
+    private final Clock clock;
     @Setter
     private int pageSize = 20;
+    private String runId;
 
 
     public void generate() {
+        runId = LocalDateTime.now(clock).toString();
         List<LoadedPage> loadedPages;
         int page = 1;
         do {
@@ -44,7 +49,7 @@ public class DatasetGenerator {
                 .map(Optional::get)
                 .collect(toList());
         if (!featuresList.isEmpty()) {
-            printer.print(featuresList);
+            printer.print(featuresList, runId);
         }
     }
 

@@ -6,5 +6,5 @@ import java.net.URI;
 import java.util.List;
 
 public interface PageFeaturesPrinter {
-    URI print(List<PageFeatures> pageFeatures);
+    URI print(List<PageFeatures> pageFeatures, String runId);
 }

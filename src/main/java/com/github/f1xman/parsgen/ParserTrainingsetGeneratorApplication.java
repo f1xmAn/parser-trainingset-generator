@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 
+import java.time.Clock;
+
 @SpringBootApplication
 public class ParserTrainingsetGeneratorApplication {
 
@@ -18,6 +20,11 @@ public class ParserTrainingsetGeneratorApplication {
     @Profile("!test")
     ApplicationRunner runner(DatasetGenerator generator) {
         return args -> generator.generate();
+    }
+
+    @Bean
+    Clock clock() {
+        return Clock.systemDefaultZone();
     }
 
 }
