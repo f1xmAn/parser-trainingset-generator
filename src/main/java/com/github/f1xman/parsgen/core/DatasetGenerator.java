@@ -35,7 +35,7 @@ public class DatasetGenerator {
     public void generate() {
         runId = LocalDateTime.now(clock).toString();
         List<LoadedPage> loadedPages;
-        int page = 1;
+        int page = 0;
         do {
             loadedPages = loader.loadAll(page++, pageSize);
             analyzeAndPrint(loadedPages);

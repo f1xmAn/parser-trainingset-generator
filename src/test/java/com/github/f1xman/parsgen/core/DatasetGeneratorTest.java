@@ -25,8 +25,8 @@ class DatasetGeneratorTest {
     static final Clock CLOCK = Clock.fixed(Instant.parse("2007-12-03T10:15:30.00Z"), ZoneId.of("UTC"));
     static final int SIZE = 20;
     static final String FOO_BAR = "foo.bar";
+    static final int PAGE_0 = 0;
     static final int PAGE_1 = 1;
-    static final int PAGE_2 = 2;
 
     @Mock
     PageLoader loader;
@@ -42,9 +42,9 @@ class DatasetGeneratorTest {
     @Test
     void orchestratesDatasetGeneratorUntilAllSourcesProcessed() throws AnalysisStrategyNotFoundException {
         DatasetGenerator datasetGenerator = new DatasetGenerator(loader, analyzer, printer, CLOCK);
-        given(loader.loadAll(PAGE_1, SIZE)).willReturn(List.of(loadedPageWithoutStrategy));
+        given(loader.loadAll(PAGE_0, SIZE)).willReturn(List.of(loadedPageWithoutStrategy));
         given(loadedPageWithoutStrategy.analyze(analyzer)).willThrow(new AnalysisStrategyNotFoundException(FOO_BAR));
-        given(loader.loadAll(PAGE_2, SIZE)).willReturn(List.of(loadedPage));
+        given(loader.loadAll(PAGE_1, SIZE)).willReturn(List.of(loadedPage));
         PageFeatures pageFeatures = PageFeatures.of(List.of());
         given(loadedPage.analyze(analyzer)).willReturn(pageFeatures);
 
@@ -56,7 +56,7 @@ class DatasetGeneratorTest {
     @Test
     void doesNotInvokePrintIfDatasetNotGenerated() {
         DatasetGenerator datasetGenerator = new DatasetGenerator(loader, analyzer, printer, CLOCK);
-        given(loader.loadAll(PAGE_1, SIZE)).willReturn(List.of());
+        given(loader.loadAll(PAGE_0, SIZE)).willReturn(List.of());
 
         datasetGenerator.generate();
 
