@@ -43,7 +43,9 @@ public class DatasetGenerator {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(toList());
-        printer.print(featuresList);
+        if (!featuresList.isEmpty()) {
+            printer.print(featuresList);
+        }
     }
 
     private Optional<PageFeatures> analyze(LoadedPage p) {

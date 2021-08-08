@@ -48,4 +48,14 @@ class DatasetGeneratorTest {
 
         then(printer).should().print(List.of(pageFeatures));
     }
+
+    @Test
+    void doesNotInvokePrintIfDatasetNotGenerated() {
+        DatasetGenerator datasetGenerator = new DatasetGenerator(loader, analyzer, printer);
+        given(loader.loadAll(PAGE_1, SIZE)).willReturn(List.of());
+
+        datasetGenerator.generate();
+
+        then(printer).shouldHaveNoInteractions();
+    }
 }

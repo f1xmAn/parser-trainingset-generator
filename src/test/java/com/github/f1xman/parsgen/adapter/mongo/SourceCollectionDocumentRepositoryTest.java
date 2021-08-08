@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.MongoDBContainer;
@@ -21,6 +22,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 @Testcontainers
 @DataMongoTest
+@ActiveProfiles("test")
 public class SourceCollectionDocumentRepositoryTest {
 
     @Container
