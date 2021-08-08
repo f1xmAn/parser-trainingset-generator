@@ -1,5 +1,6 @@
-package com.github.f1xman.parsgen.core.load;
+package com.github.f1xman.parsgen.adapter.http;
 
+import com.github.f1xman.parsgen.core.load.HtmlPageLoader;
 import com.github.f1xman.parsgen.core.load.model.HtmlPage;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
