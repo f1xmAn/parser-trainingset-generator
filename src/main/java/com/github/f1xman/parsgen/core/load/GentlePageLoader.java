@@ -61,12 +61,16 @@ public class GentlePageLoader implements PageLoader {
 
     private Stream<Stream<URL>> getUrlStreamSlices(int page, int size) {
         List<SourceCollection> sourceCollections = sourceCollectionRepository.findAll(page, size);
-        Integer numberOfSlices = sourceCollections.stream()
+        Integer numberOfSlices = estimateNumberOfSlices(sourceCollections);
+        return IntStream.range(0, numberOfSlices)
+                .mapToObj(i -> getSlice(sourceCollections, i));
+    }
+
+    private Integer estimateNumberOfSlices(List<SourceCollection> sourceCollections) {
+        return sourceCollections.stream()
                 .map(s -> s.getUrls().size())
                 .max(naturalOrder())
                 .orElse(0);
-        return IntStream.range(0, numberOfSlices)
-                .mapToObj(i -> getSlice(sourceCollections, i));
     }
 
     private Stream<URL> getSlice(List<SourceCollection> sourceCollections, int index) {
