@@ -1,7 +1,7 @@
 package com.github.f1xman.parsgen.core.analyze;
 
+import com.github.f1xman.parsgen.core.analyze.model.LoadedPage;
 import com.github.f1xman.parsgen.core.analyze.model.PageFeatures;
-import com.github.f1xman.parsgen.core.load.model.LoadedPage;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 

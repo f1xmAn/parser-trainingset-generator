@@ -4,8 +4,8 @@ import com.github.f1xman.parsgen.adapter.mongo.SourceCollectionDocumentRepositor
 import com.github.f1xman.parsgen.adapter.mongo.document.SourceCollectionDocument;
 import com.github.f1xman.parsgen.core.DatasetGenerator;
 import com.github.f1xman.parsgen.core.analyze.AnalysisStrategy;
+import com.github.f1xman.parsgen.core.analyze.model.LoadedPage;
 import com.github.f1xman.parsgen.core.analyze.model.PageFeatures;
-import com.github.f1xman.parsgen.core.load.model.LoadedPage;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

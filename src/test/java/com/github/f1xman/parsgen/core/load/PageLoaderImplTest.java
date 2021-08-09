@@ -1,7 +1,7 @@
 package com.github.f1xman.parsgen.core.load;
 
+import com.github.f1xman.parsgen.core.analyze.model.LoadedPage;
 import com.github.f1xman.parsgen.core.load.model.HtmlPage;
-import com.github.f1xman.parsgen.core.load.model.LoadedPage;
 import com.github.f1xman.parsgen.core.load.model.LoadedPageImpl;
 import com.github.f1xman.parsgen.core.load.model.SourceCollection;
 import lombok.SneakyThrows;

@@ -1,7 +1,6 @@
 package com.github.f1xman.parsgen.adapter.csv;
 
 import com.github.f1xman.parsgen.core.analyze.model.PageFeatures;
-import com.github.f1xman.parsgen.core.analyze.model.PageFeatures.Feature;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,7 +57,7 @@ public class CsvPageFeaturesPrinterTest {
     @SneakyThrows
     void printsPageFeaturesToCsvFile() {
         CsvPageFeaturesPrinter printer = new CsvPageFeaturesPrinter(tempDirectory);
-        Feature singleFeature = Feature.of(FEATURE, VALUE);
+        PageFeatures.Feature singleFeature = PageFeatures.Feature.of(FEATURE, VALUE);
         PageFeatures pageFeatures = PageFeatures.of(List.of(singleFeature));
 
         URI outputCsvUri = printer.print(List.of(pageFeatures), RUN_ID);
@@ -72,7 +71,7 @@ public class CsvPageFeaturesPrinterTest {
         Path outputFile = tempDirectory.resolve("features-runId.csv");
         Files.writeString(outputFile, expectedCreatedCsv);
         CsvPageFeaturesPrinter printer = new CsvPageFeaturesPrinter(tempDirectory);
-        Feature singleFeature = Feature.of(FEATURE, VALUE);
+        PageFeatures.Feature singleFeature = PageFeatures.Feature.of(FEATURE, VALUE);
         PageFeatures pageFeatures = PageFeatures.of(List.of(singleFeature));
 
         URI outputCsvUri = printer.print(List.of(pageFeatures), RUN_ID);
